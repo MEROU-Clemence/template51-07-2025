@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="{{CurrentLang.IsoLang}}" culture="{{CurrentLang.CultureLang}}">
+<head>
+    <title>{{ResourcesTemplate.BookTitle}} - {{CustomTitle}} - {{City}} - {{Country}}</title>
+    <meta name="description" content="{{MetaDescriptionOnlineReservation}}">
+    {{>CommonMetaTags}}
+    <link rel="canonical" href="{{UrlOnlineBooking}}" />
+    <meta property="og:url" content="{{UrlOnlineBooking}}" />
+    <meta property="og:title" content="{{ResourcesTemplate.BookTitle}}" />
+    <meta property="og:image" content="{{#Photos.0}}{{UrlMedias}}/crop-300x200/{{IdMedia}}/{{FileNamePhoto}}{{/Photos.0}}" />
+    <meta property="og:description" content="{{MetaDescriptionOnlineReservation}}" />
+    {{>FaviconTags}}
+    {{>CommonStylesheets}}
+    {{#HasBookingActivated}}{{>ScriptCalendarClick}}{{/HasBookingActivated}}
+</head>
+<body>
+    {{{ScriptAnalytics}}}
+    {{{GoogleTagManagerBody}}}
+    {{>Header}}
+
+    <main>
+        <!-- SECTION BANNER -->
+        <section class="section-title-BG section-title-BG-with-widget bg-img" style="background-image: url({{#Photos.0}}{{UrlMedias}}/crop-1600x600/{{IdMedia}}/{{FileNamePhoto}}{{/Photos.0}}); " alt="{{NamePhoto}}-detail-bg">
+            <div class="opacity">
+
+                {{#HasBookingActivated}}
+                <div id="section-BE" class="section-BE-home">
+                    <div class="check-availability">
+                        <div class="rounded-box">
+                            {{>Widget-BE}}
+                            {{>Widget-BE-secure}}
+                        </div>
+                    </div>
+                </div>
+                {{/HasBookingActivated}}
+
+            </div>
+        </section>
+
+        {{#HasCalendarActivated}}
+        <!-- SECTION CALENDAR -->
+        <section class="section">
+            <div class="content-section">
+
+                <div class="section-title">
+                    <h2>{{ResourcesTemplate.AvailabilityTitle}}</h2>
+                </div>
+
+                <div class="calendars">
+                    <div class="avail-calendar-w">
+                        <div class="calendar-container">
+                            <div id="datepicker2"></div>
+                        </div>
+                    </div>
+                    <div class="calendar_status">
+                        <div>
+                            <div class="green-dispo">-</div>
+                            <span>{{ResourcesTemplate.Available}}</span>
+                        </div>
+                        <div>
+                            <div class="red-no-dispo">-</div>
+                            <span class="not-available">{{ResourcesTemplate.NotAvailable}}</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        {{/HasCalendarActivated}}
+
+        {{#HasNewsletterActivated}}
+        <!-- SECTION NEWSLETTER -->
+        {{>Newsletter}}
+        {{/HasNewsletterActivated}}
+    </main>
+
+    {{>Footer}}
+    {{>CommonScripts}}
+    
+</body>
+</html>

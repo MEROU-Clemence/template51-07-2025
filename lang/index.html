@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="{{CurrentLang.IsoLang}}" culture="{{CurrentLang.CultureLang}}">
+<head>
+    <title>{{CustomTitle}} - {{City}} - {{Country}}</title>
+    <meta name="description" content="{{Descriptions.0.DescLength150}}">
+    {{>CommonMetaTags}}
+    <link rel="canonical" href="{{UrlRoot}}" />
+    <meta property="og:url" content="{{UrlRoot}}" />
+    <meta property="og:title" content="{{CustomTitle}}" />
+    <meta property="og:image" content="{{#Photos.0}}{{UrlMedias}}/crop-300x200/{{IdMedia}}/{{FileNamePhoto}}{{/Photos.0}}" />
+    <meta property="og:description" content="{{Descriptions.0.DescLength150}}" />
+    {{>FaviconTags}}
+    {{>CommonStylesheets}}
+    <link rel="stylesheet" href="https://static.elloha.com/webgen/css/newcookieconsent.css">
+    {{#HasBookingActivated}}{{>ScriptCalendarClick}}{{/HasBookingActivated}}
+</head>
+<body>
+    {{{ScriptAnalytics}}}
+    {{{GoogleTagManagerBody}}}
+    {{>Header}}
+
+    <main>
+        <!-- SECTION WIDGET BE -->
+        <section class="section-widget-be bg-img" {{^HasHomeVideoActivated}} style="background-image: url({{#Photos.0}}{{UrlMedias}}/crop-1600x1000/{{IdMedia}}/{{FileNamePhoto}}{{/Photos.0}});" draggable="false" {{/HasHomeVideoActivated}}>
+            {{#HasHomeVideoActivated}}
+            <div class="video-home video-wrap">
+                <div id="player"></div>
+                <input type="hidden" value="{{HomeVideoId}}" id="YoutubeVideoId" />
+            </div>
+            {{/HasHomeVideoActivated}}
+
+            <div class="opacity">
+                {{#HasBookingActivated}}
+                <div id="section-BE" class="section-BE-home">
+                    <div class="check-availability">
+                        <div class="rounded-box">
+                            {{>Widget-BE}}
+                            {{>Widget-BE-secure}}
+                        </div>
+                    </div>
+                </div>
+                {{/HasBookingActivated}}
+
+                <div class="principal-title">
+                    <h4>{{CustomTypeOi}}</h4>
+
+                    <h1>{{CustomTitle}}</h1>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION PRESENTATION & METEO -->
+        <section class="section-presentation-and-meteo">
+            <div class="content-section">
+
+                <h2>{{Descriptions.0.TitleDesc}}</h2>
+
+                <div class="descrip-and-meteo">
+                    <div class="description-contain">
+                        <div class="description">{{{Descriptions.0.LibelleDescHtml}}}</div>
+
+                        <div id="seeMore2" class="more-less-btn-contain">
+                            <a href="#" class="more-less-btn"><strong>{{ResourcesTemplate.ShowMore}}</strong></a>
+                        </div>
+                        <div id="seeLess2" class="more-less-btn-contain">
+                            <a href="#" class="more-less-btn"><strong>{{ResourcesTemplate.ShowLess}}</strong></a>
+                        </div>
+                    </div>
+
+                    <!-- SECTION METEO -->
+                    <div class="owl-carousel owl-theme slider-meteo">
+                        {{! Current conditions }}
+                        <div class="weather-item">
+                            <div class="infos-meteo">
+                                <h3>{{ResourcesTemplate.Weather2}}</h3>
+
+                                <div class="date-city-and-temperature">
+                                    <span class="date-meteo">{{CurrentLang.Day}}</span>
+
+                                    <span class="city">{{City}}</span>
+
+                                    <div class="trad-and-temperature">
+                                        <canvas id="WeatherCcIcon" data="{{CurrentWeather.WeatherIcon}}" class="weather-icon"></canvas>
+                                        <div class="weather-trad" data="{{CurrentWeather.WeatherIcon}}"></div>
+                                        <span class="temperature" id="WeatherCcTemperature">- {{CurrentWeather.WeatherTemperature}}°{{CurrentLang.TemperatureUnit}}</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="weather-item meteo-img" data-url="https://static.elloha.com/webgen/img/weather/"></div>
+                        </div>
+                        {{! Day + 1 }}
+                        <div class="weather-item">
+                            <div class="infos-meteo">
+                                <h3>{{ResourcesTemplate.Weather2}}</h3>
+
+                                <div class="date-city-and-temperature">
+                                    <span class="date-meteo">{{CurrentLang.DayPlus1}}</span>
+
+                                    <div class="trad-and-temperature">
+                                        <canvas id="WeatherCcIcon" data="{{NextDaysWeather.0.WeatherIcon}}" class="weather-icon"></canvas>
+                                        <div class="weather-trad" data="{{NextDaysWeather.0.WeatherIcon}}"></div>
+                                        <span class="temperature" id="WeatherDay1Temperature">- {{NextDaysWeather.0.WeatherTemperature}}°{{CurrentLang.TemperatureUnit}}</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="weather-item meteo-img" data-url="https://static.elloha.com/webgen/img/weather/"></div>
+                        </div>
+                        {{! Day + 2 }}
+                        <div class="weather-item">
+                            <div class="infos-meteo">
+                                <h3>{{ResourcesTemplate.Weather2}}</h3>
+
+                                <div class="date-city-and-temperature">
+                                    <span class="date-meteo">{{CurrentLang.DayPlus2}}</span>
+
+                                    <div class="trad-and-temperature">
+                                        <canvas id="WeatherCcIcon" data="{{NextDaysWeather.1.WeatherIcon}}" class="weather-icon"></canvas>
+                                        <div class="weather-trad" data="{{NextDaysWeather.1.WeatherIcon}}"></div>
+                                        <span class="temperature" id="WeatherDay1Temperature">- {{NextDaysWeather.1.WeatherTemperature}}°{{CurrentLang.TemperatureUnit}}</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="weather-item meteo-img" data-url="https://static.elloha.com/webgen/img/weather/"></div>
+                        </div>
+                        {{! Day + 3 }}
+                        <div class="weather-item">
+                            <div class="infos-meteo">
+                                <h3>{{ResourcesTemplate.Weather2}}</h3>
+
+                                <div class="date-city-and-temperature">
+                                    <span class="date-meteo">{{CurrentLang.DayPlus3}}</span>
+
+                                    <div class="trad-and-temperature">
+                                        <canvas id="WeatherCcIcon" data="{{NextDaysWeather.2.WeatherIcon}}" class="weather-icon"></canvas>
+                                        <div class="weather-trad" data="{{NextDaysWeather.2.WeatherIcon}}"></div>
+                                        <span class="temperature" id="WeatherDay1Temperature">- {{NextDaysWeather.2.WeatherTemperature}}°{{CurrentLang.TemperatureUnit}}</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="weather-item meteo-img" data-url="https://static.elloha.com/webgen/img/weather/"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        {{#HasSCEA}}
+        <!-- SECTION SCEA -->
+        <section class="section section-scea">
+            <div class="content-section">
+
+                <div class="section-title">
+                    <h2>{{ResourcesTemplate.OurServices}}</h2>
+                </div>
+
+                <div class="scea-and-btn">
+                    <div class="picto-informations">
+                        {{#HasPetsAllowed}}
+                        <div class="scea-picto options-scea">
+                            <i class="las la-paw"></i>
+                            <span>{{ResourcesTemplate.PetsAllowed}}</span>
+                        </div>
+                        {{/HasPetsAllowed}}
+                        {{#HasDisabledAccessHome}}
+                        <div class="scea-picto options-scea">
+                            <i class="las la-wheelchair"></i>
+                            <span>{{ResourcesTemplate.DisabledAccess}}</span>
+                        </div>
+                        {{/HasDisabledAccessHome}}
+                        {{#HasWifiHome}}
+                        <div class="scea-picto options-scea">
+                            <i class="las la-wifi"></i>
+                            <span>Wifi</span>
+                        </div>
+                        {{/HasWifiHome}}
+                        {{#HasParking}}
+                        <div class="scea-picto options-scea">
+                            <i class="las la-parking"></i>
+                            <span>{{ResourcesTemplate.Parking}}</span>
+                        </div>
+                        {{/HasParking}}
+                        {{#HasAirConditioningHome}}
+                        <div class="scea-picto options-scea">
+                            <i class="las la-snowflake"></i>
+                            <span>{{ResourcesTemplate.AirConditioning}}</span>
+                        </div>
+                        {{/HasAirConditioningHome}}
+                        {{#HasPool}}
+                        <div class="scea-picto options-scea">
+                            <i class="las la-swimming-pool"></i>
+                            <span>{{ResourcesTemplate.SwimmingPool}}</span>
+                        </div>
+                        {{/HasPool}}
+                        {{#HasSpa}}
+                        <div class="scea-picto options-scea">
+                            <i class="las la-spa"></i>
+                            <span>{{ResourcesTemplate.SpaHammam}}</span>
+                        </div>
+                        {{/HasSpa}}
+                        {{#HasBreakfast}}
+                        <div class="scea-picto options-scea">
+                            <i class="las la-coffee"></i>
+                            <span>{{ResourcesTemplate.Breakfast}}</span>
+                        </div>
+                        {{/HasBreakfast}}
+                        {{#HasRoomService}}
+                        <div class="scea-picto options-scea">
+                            <i class="las la-concierge-bell"></i>
+                            <span>{{ResourcesTemplate.RoomService}}</span>
+                        </div>
+                        {{/HasRoomService}}
+                        {{#HasRestaurant}}
+                        <div class="scea-picto options-scea">
+                            <i class="las la-utensils"></i>
+                            <span>{{ResourcesTemplate.Restaurant}}</span>
+                        </div>
+                        {{/HasRestaurant}}
+                        {{#SCEA}}
+                        <div class="options-scea">
+                            <i class="las la-check"></i>
+                            <span>{{LibelleService}}</span>
+                        </div>
+                        {{/SCEA}}
+                    </div>
+
+                    <div class="btn-contain-scea more-less-btn-contain">
+                        <div id="seeMore1" class="btn-scea more-less-btn"><strong>{{ResourcesTemplate.ShowMore}}</strong></div>
+                        <div id="seeLess1" class="btn-scea more-less-btn d-none"><strong>{{ResourcesTemplate.ShowLess}}</strong></div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        {{/HasSCEA}}
+
+        <!-- SECTION GALERIE -->
+        <section class="section section-carousel">
+            <div class="content-section">
+
+                <div id="Carousel-slider">
+                    <div class="Carousel-slider">
+                        {{#Photos}}
+                        <div class="slider-item">
+                            <img src="{{UrlMedias}}/crop-500x450/{{IdMedia}}/{{FileNamePhoto}}" alt="{{NamePhoto}}-galerie" />
+                        </div>
+                        {{/Photos}}
+                    </div>
+
+                    <div class="btn-slider-contain">
+                        <div id="prev-slide" class="slider-control prev">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M0.879999 9.91002L4.75 6.00002C4.84296 5.90629 4.95357 5.8319 5.07542 5.78113C5.19728 5.73036 5.32799 5.70422 5.46 5.70422C5.59201 5.70422 5.72272 5.73036 5.84458 5.78113C5.96643 5.8319 6.07704 5.90629 6.17 6.00002C6.35625 6.18738 6.46079 6.44084 6.46079 6.70502C6.46079 6.96921 6.35625 7.22266 6.17 7.41002L2.61 11H23C23.2652 11 23.5196 11.1054 23.7071 11.2929C23.8946 11.4805 24 11.7348 24 12C24 12.2652 23.8946 12.5196 23.7071 12.7071C23.5196 12.8947 23.2652 13 23 13H2.55L6.17 16.61C6.26373 16.703 6.33812 16.8136 6.38889 16.9354C6.43966 17.0573 6.4658 17.188 6.4658 17.32C6.4658 17.452 6.43966 17.5827 6.38889 17.7046C6.33812 17.8265 6.26373 17.9371 6.17 18.03C6.07704 18.1238 5.96643 18.1981 5.84458 18.2489C5.72272 18.2997 5.59201 18.3258 5.46 18.3258C5.32799 18.3258 5.19728 18.2997 5.07542 18.2489C4.95357 18.1981 4.84296 18.1238 4.75 18.03L0.879999 14.15C0.318197 13.5875 0.00263977 12.825 0.00263977 12.03C0.00263977 11.235 0.318197 10.4725 0.879999 9.91002Z" fill="var(--color-bg-2)" />
+                            </svg>
+                        </div>
+                        <div id="next-slide" class="slider-control next">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M23.12 9.91002L19.25 6.00002C19.157 5.90629 19.0464 5.8319 18.9246 5.78113C18.8027 5.73036 18.672 5.70422 18.54 5.70422C18.408 5.70422 18.2773 5.73036 18.1554 5.78113C18.0336 5.8319 17.923 5.90629 17.83 6.00002C17.6437 6.18738 17.5392 6.44084 17.5392 6.70502C17.5392 6.96921 17.6437 7.22266 17.83 7.41002L21.39 11H1C0.734784 11 0.48043 11.1054 0.292893 11.2929C0.105357 11.4805 0 11.7348 0 12C0 12.2652 0.105357 12.5196 0.292893 12.7071C0.48043 12.8947 0.734784 13 1 13H21.45L17.83 16.61C17.7363 16.703 17.6619 16.8136 17.6111 16.9354C17.5603 17.0573 17.5342 17.188 17.5342 17.32C17.5342 17.452 17.5603 17.5827 17.6111 17.7046C17.6619 17.8265 17.7363 17.9371 17.83 18.03C17.923 18.1238 18.0336 18.1981 18.1554 18.2489C18.2773 18.2997 18.408 18.3258 18.54 18.3258C18.672 18.3258 18.8027 18.2997 18.9246 18.2489C19.0464 18.1981 19.157 18.1238 19.25 18.03L23.12 14.15C23.6818 13.5875 23.9974 12.825 23.9974 12.03C23.9974 11.235 23.6818 10.4725 23.12 9.91002Z" fill="var(--color-bg-2)" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        {{#HasPrestas}}
+        <!-- SECTION PRESTAS/OFFRES -->
+        <section class="section section-prestas">
+            <div class="content-section">
+
+                <div class="section-title">
+                    <h2>{{ResourcesTemplate.Offers_OurOffers}}</h2>
+                </div>
+
+                <div class="owl-carousel owl-theme slider-prestas">
+                    {{#Prestations}}
+                    <div class="presta-contain">
+                        <div class="infos-presta">
+                            <h3>{{TitrePresta}}</h3>
+
+                            {{#DescriptionPresta}}
+                            <div class="description-presta">{{{DescriptionPresta}}}</div>
+                            {{/DescriptionPresta}}
+
+                            <div class="price-and-btn-presta">
+                                {{#MinPricePresta}}
+                                <div class="saw-prices">
+                                    <span class="price-begin">{{ResourcesTemplate.PriceFrom}}</span>
+                                    <span class="presta-price">
+                                        <strong>{{MinPricePresta}}{{CurrencySymbol}}</strong>/{{ResourcesTemplate.Night}}
+                                    </span>
+                                </div>
+                                {{/MinPricePresta}}
+
+                                <a class="btn" href="{{UrlPrestaTemplate}}">{{ResourcesTemplate.discover}}</a>
+                            </div>
+                        </div>
+
+                        <div class="img-presta-contain">
+                            {{#PhotosPresta.0}}
+                            <img class="img-presta bg-img" src="{{UrlMedias}}/crop-400x200/{{IdMedia}}/{{FileNamePhoto}}" alt="{{NamePhoto}}-presta" />
+                            {{/PhotosPresta.0}}
+                            {{^PhotosPresta}}
+                            {{#Photos.1}}
+                            <img class="img-presta bg-img" src="{{UrlMedias}}/crop-400x200/{{IdMedia}}/{{FileNamePhoto}}" alt="{{NamePhoto}}-presta" />
+                            {{/Photos.1}}
+                            {{/PhotosPresta}}
+                        </div>
+                    </div>
+                    {{/Prestations}}
+                </div>
+
+            </div>
+        </section>
+        {{/HasPrestas}}
+
+        {{#HasSpecialOffers}}
+        <!-- SECTION OFFRES SPECIALES -->
+        <section class="section section-special-offers">
+            <div class="content-section">
+
+                <div class="section-title">
+                    <h2>{{ResourcesTemplate.SpecialOffers}}</h2>
+                </div>
+
+                <div class="special-offer-big-contain">
+                    {{#SpecialOffers.0}}
+                    <div class="special-offer-contain">
+                        <div class="promo-and-picture-special-offer">
+                            {{#AmountPromo}}
+                            <span class="presta-price-special-offers">{{SignPromo}}{{AmountPromo}} {{UnitPromo}}</span>
+                            {{/AmountPromo}}
+
+                            {{#FirstPhotoSpecialOffer}}
+                            <img class="bg-img" src="{{UrlMedias}}/crop-350x250/{{IdMedia}}/{{FileNamePhoto}}" alt="{{NamePhoto}}-special-offer" />
+                            {{/FirstPhotoSpecialOffer}}
+                            {{^FirstPhotoSpecialOffer}}
+                            <img class="bg-img" src="https://static.elloha.com/webgen/img/special-offer.png" alt="{{NamePhoto}}-special-offer" />
+                            {{/FirstPhotoSpecialOffer}}
+                        </div>
+
+                        <div class="infos-special-offers">
+                            <div class="title-and-valid-for">
+                                <h3>{{TitleSpecialOffer}}</h3>
+
+                                <div class="valid-for-and-descrip">
+                                    <div class="special-offer-related">
+                                        {{ResourcesTemplate.ValidFor}}: {{#PrestasSpecialOfferList}}{{TitrePresta}}<span class="separator">,</span>{{/PrestasSpecialOfferList}}
+                                    </div>
+
+                                    {{#DescriptionPrestation}}
+                                    <p class="description-special-offer">{{DescriptionPrestation}}</p>
+                                    {{/DescriptionPrestation}}
+
+                                    <div class="seeMore1 more-less-btn-contain">
+                                        <a href="#" class="more-less-btn"><strong>{{ResourcesTemplate.ShowMore}}</strong></a>
+                                    </div>
+                                    <div class="seeLess1 more-less-btn-contain">
+                                        <a href="#" class="more-less-btn"><strong>{{ResourcesTemplate.ShowLess}}</strong></a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="date-and-btn-discover">
+                                <div class="dates-os-contain">
+                                    {{^IsEarlyBirdOrLastMinute}}
+                                    {{#DateFromSpecialOfferString}}
+                                    <div class="date-os">{{ResourcesTemplate.DateFrom}}</div>
+                                    <div class="date-os date-os-strong">{{DateFromSpecialOfferString}}</div>
+                                    <div class="date-os">{{ResourcesTemplate.DateTo}} </div>
+                                    {{/DateFromSpecialOfferString}}
+
+                                    {{^DateFromSpecialOfferString}}
+                                    {{#DateToSpecialOfferString}}
+                                    <div class="date-os">{{ResourcesTemplate.OfferValidUntil}} </div>
+                                    {{/DateToSpecialOfferString}}
+                                    {{/DateFromSpecialOfferString}}
+
+                                    {{#DateToSpecialOfferString}}
+                                    <div class="date-os date-os-strong">{{DateToSpecialOfferString}}</div>
+                                    {{/DateToSpecialOfferString}}
+
+                                    <div class="date-os">{{DeadlineStringSpecialOffer}}</div>
+                                    {{/IsEarlyBirdOrLastMinute}}
+
+                                    {{#LastMinute}}
+                                    <div class="date-os">{{ResourcesTemplate.RightNow}}</div>
+                                    {{/LastMinute}}
+                                    {{#EarlyBird}}
+                                    <div class="date-os">{{ResourcesTemplate.BookEarly}}</div>
+                                    {{/EarlyBird}}
+                                    {{#MinStayStringSpecialOffer}}
+                                    <div>{{MinStayStringSpecialOffer}}</div>
+                                    {{/MinStayStringSpecialOffer}}
+                                </div>
+
+                                <a class="btn" href="{{UrlSpecialOffers}}">{{ResourcesTemplate.discover}}</a>
+                            </div>
+                        </div>
+                    </div>
+                    {{/SpecialOffers.0}}
+                    {{#SpecialOffers.1}}
+                    <div class="special-offer-contain special-offer-contain-2">
+                        <div class="promo-and-picture-special-offer">
+                            {{#AmountPromo}}
+                            <span class="presta-price-special-offers">{{SignPromo}}{{AmountPromo}} {{UnitPromo}}</span>
+                            {{/AmountPromo}}
+
+                            {{#FirstPhotoSpecialOffer}}
+                            <img class="bg-img" src="{{UrlMedias}}/crop-350x250/{{IdMedia}}/{{FileNamePhoto}}" alt="{{NamePhoto}}-special-offer" />
+                            {{/FirstPhotoSpecialOffer}}
+                            {{^FirstPhotoSpecialOffer}}
+                            <img class="bg-img" src="https://static.elloha.com/webgen/img/special-offer.png" alt="{{NamePhoto}}-special-offer" />
+                            {{/FirstPhotoSpecialOffer}}
+                        </div>
+
+                        <div class="infos-special-offers">
+                            <div class="title-and-valid-for">
+                                <h3>{{TitleSpecialOffer}}</h3>
+
+                                <div class="valid-for-and-descrip">
+                                    <div class="special-offer-related">
+                                        {{ResourcesTemplate.ValidFor}}: {{#PrestasSpecialOfferList}}{{TitrePresta}}<span class="separator">,</span>{{/PrestasSpecialOfferList}}
+                                    </div>
+
+                                    {{#DescriptionPrestation}}
+                                    <p class="description-special-offer">{{DescriptionPrestation}}</p>
+                                    {{/DescriptionPrestation}}
+
+                                    <div class="seeMore1 more-less-btn-contain">
+                                        <a href="#" class="more-less-btn"><strong>{{ResourcesTemplate.ShowMore}}</strong></a>
+                                    </div>
+                                    <div class="seeLess1 more-less-btn-contain">
+                                        <a href="#" class="more-less-btn"><strong>{{ResourcesTemplate.ShowLess}}</strong></a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="date-and-btn-discover">
+                                <div class="dates-os-contain">
+                                    {{^IsEarlyBirdOrLastMinute}}
+                                    {{#DateFromSpecialOfferString}}
+                                    <div class="date-os">{{ResourcesTemplate.DateFrom}}</div>
+                                    <div class="date-os date-os-strong">{{DateFromSpecialOfferString}}</div>
+                                    <div class="date-os">{{ResourcesTemplate.DateTo}} </div>
+                                    {{/DateFromSpecialOfferString}}
+
+                                    {{^DateFromSpecialOfferString}}
+                                    {{#DateToSpecialOfferString}}
+                                    <div class="date-os">{{ResourcesTemplate.OfferValidUntil}} </div>
+                                    {{/DateToSpecialOfferString}}
+                                    {{/DateFromSpecialOfferString}}
+
+                                    {{#DateToSpecialOfferString}}
+                                    <div class="date-os date-os-strong">{{DateToSpecialOfferString}}</div>
+                                    {{/DateToSpecialOfferString}}
+
+                                    <div class="date-os">{{DeadlineStringSpecialOffer}}</div>
+                                    {{/IsEarlyBirdOrLastMinute}}
+
+                                    {{#LastMinute}}
+                                    <div class="date-os">{{ResourcesTemplate.RightNow}}</div>
+                                    {{/LastMinute}}
+                                    {{#EarlyBird}}
+                                    <div class="date-os">{{ResourcesTemplate.BookEarly}}</div>
+                                    {{/EarlyBird}}
+                                    {{#MinStayStringSpecialOffer}}
+                                    <div>{{MinStayStringSpecialOffer}}</div>
+                                    {{/MinStayStringSpecialOffer}}
+                                </div>
+
+                                <a class="btn" href="{{UrlSpecialOffers}}">{{ResourcesTemplate.discover}}</a>
+                            </div>
+                        </div>
+                    </div>
+                    {{/SpecialOffers.1}}
+                </div>
+
+                <div class="btn-contain">
+                    <a class="btn" href="{{UrlSpecialOffers}}">{{ResourcesTemplate.AllOurSpecialOffers}}</a>
+                </div>
+
+            </div>
+        </section>
+        {{/HasSpecialOffers}}
+
+        {{#HasCalendarActivated}}
+        <!-- SECTION CALENDAR -->
+        <section class="section">
+            <div class="content-section">
+
+                <div class="section-title">
+                    <h2>{{ResourcesTemplate.AvailabilityTitle}}</h2>
+                </div>
+
+                <div class="calendars">
+                    <div class="avail-calendar-w">
+                        <div class="calendar-container">
+                            <div id="datepicker2"></div>
+                        </div>
+                    </div>
+                    <div class="calendar_status">
+                        <div>
+                            <div class="green-dispo">-</div>
+                            <span>{{ResourcesTemplate.Available}}</span>
+                        </div>
+                        <div>
+                            <div class="red-no-dispo">-</div>
+                            <span class="not-available">{{ResourcesTemplate.NotAvailable}}</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        {{/HasCalendarActivated}}
+
+        <!-- SECTION MAP -->
+        <section class="section section-map">
+            <div class="content-section">
+
+                <div class="address-contain">
+                    <div class="title-and-address">
+                        <h2>{{ResourcesTemplate.WhereAreWe}}</h2>
+
+                        <div class="address-line">
+                            <i class="las la-map-marker"></i>
+                            <span>
+                                {{AddressLine}},
+                                {{#ComplementAdresse}}
+                                {{ComplementAdresse}}, 
+                                {{/ComplementAdresse}}
+                                {{#DistributionSpeciale}}
+                                {{DistributionSpeciale}}, 
+                                {{/DistributionSpeciale}}
+                                {{PostalCode}} {{City}}
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="btn-contain">
+                        <div class="btn external-map" data-action="external-map">
+                            {{ResourcesTemplate.Itinerary}}
+                        </div>
+                    </div>
+                </div>
+
+                <div id="applemapkit" class="fullwidth-mapkit">
+                    <div id="mapApple"></div>
+                </div>
+
+            </div>
+        </section>
+
+        {{#HasNews}}
+        <!-- SECTION NEWS -->
+        <section class="section section-news-home">
+            <div class="content-section">
+
+                <div class="section-title">
+                    <h2>{{ResourcesTemplate.NewsPageTitle}}</h2>
+                </div>
+
+                <div class="owl-carousel owl-theme slider-news">
+                    {{#NewsList}}
+                    <div class="news-contain">
+                        {{#PhotoNews}}
+                        <img class="bg-img" src="{{UrlMedias}}/crop-250x250/{{IdMedia}}/{{FileNamePhoto}}" alt="{{NamePhoto}}-photo-news" />
+                        {{/PhotoNews}}
+                        {{^PhotoNews}}
+                        <img class="bg-img" src="https://static.elloha.com/webgen/img/news.jpg" alt="{{NamePhoto}}-photo-news">
+                        {{/PhotoNews}}
+
+                        <div class="infos-news">
+                            <h3>{{TitleNews}}</h3>
+
+                            <div class="date-and-descrip-news">
+                                <span class="date-news">{{ResourcesTemplate.PublishedOn}} {{ArticleCreatedOn}} {{DateNewsString}}</span>
+
+                                {{#TextNews}}
+                                <div class="description-news">{{{TextNews}}}</div>
+                                {{/TextNews}}
+                            </div>
+                        </div>
+                    </div>
+                    {{/NewsList}}
+                </div>
+
+                <div class="btn-contain">
+                    <a class="btn" href="{{UrlNews}}">{{ResourcesTemplate.SeeAllNews}}</a>
+                </div>
+
+            </div>
+        </section>
+        {{/HasNews}}
+
+        {{#HasReviewsBlocActivated}}
+        <!-- SECTION AVIS -->
+        <section class="section section-avis">
+            <div class="content-section">
+
+                <div class="title-and-slider">
+                    <h2>{{ResourcesTemplate.RatingsAndReviews}}</h2>
+
+                    <div class="owl-carousel owl-theme avis-slider">
+                        {{#HasTripAdvisorWidgetActivated}}
+                        <div class="tripadvisor">
+                            <div id="TA_selfserveprop305" class="TA_selfserveprop">
+                                <ul id="heyZm1bjWr" class="TA_links TJXUQcKl6zhk">
+                                    <li id="3USOaCl3wjK" class="Kfd0SDvr8">
+                                        <a target="_blank" href="https://www.tripadvisor.fr/"><img src="https://www.tripadvisor.fr/img/cdsi/img2/branding/150_logo-11900-2.png" class="lazyload" alt="TripAdvisor" /></a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <script async src="https://www.jscache.com/wejs?wtype=selfserveprop&amp;uniq=305&amp;locationId={{CodeTripAdvisor}}&amp;lang=fr&amp;rating=true&amp;nreviews=3&amp;writereviewlink=true&amp;popIdx=true&amp;iswide=true&amp;border=true&amp;display_version=2"></script>
+                        </div>
+                        {{/HasTripAdvisorWidgetActivated}}
+
+                        {{#HasBookingGuestsScoreActivated}}
+                        <div class="booking">
+                            <div class="booking-widget content-white-bg">
+                                <div class="booking-logo">
+                                    <img src="https://static.elloha.com/elloha/Images/logo-booking.png" alt="logo-booking">
+                                </div>
+                                <div class="booking-top">
+                                    <div class="global-note-w">
+                                        <span id="GlobalNote" class="global-note">{{BookingGuestsReviewScore}}</span>
+                                    </div>
+                                    <div class="global-review-w">
+                                        <div class="global-review">{{BookingGuestsReviewScoreLabel}}</div>
+                                        <div class="experiences-lived">{{BookingGuestsReviewScoreCount}} {{ResourcesTemplate.LivedExperiences}}</div>
+                                    </div>
+                                </div>
+                                <ul class="booking-scores">
+                                    <li class="scrore mb-15">
+                                        <p class="f-open-sans f-size-14 d-block w-100-p m-bottom-10">
+                                            <i class="las la-broom"></i> {{ResourcesTemplate.Cleanliness}}
+                                            <span class="float-right" id="">{{BookingGuestsCleanScore}}</span>
+                                        </p>
+                                        <div class="note-bar-w w-100-p relative pos-relative">
+                                            <div class="note-bar back opacity-02 w-100-p"></div>
+                                            <div id="" class="note-bar front pos-absolute" data-score="{{BookingGuestsCleanScore}}"></div>
+                                        </div>
+                                    </li>
+                                    <li class="scrore mb-15">
+                                        <p class="f-open-sans f-size-14 d-block w-100-p m-bottom-10">
+                                            <i class="las la-map-marked-alt"></i> {{ResourcesTemplate.GeographicalLocation}}
+                                            <span class="float-right" id="">{{BookingGuestsLocationScore}}</span>
+                                        </p>
+                                        <div class="note-bar-w w-100-p relative pos-relative">
+                                            <div class="note-bar back opacity-02 w-100-p"></div>
+                                            <div id="" class="note-bar front pos-absolute" data-score="{{BookingGuestsLocationScore}}"></div>
+                                        </div>
+                                    </li>
+                                    <li class="scrore mb-15">
+                                        <p class="f-open-sans f-size-14 d-block w-100-p m-bottom-10">
+                                            <i class="las la-couch"></i> {{ResourcesTemplate.Comfort}}
+                                            <span class="float-right" id="">{{BookingGuestsComfortScore}}</span>
+                                        </p>
+                                        <div class="note-bar-w w-100-p relative pos-relative">
+                                            <div class="note-bar back opacity-02 w-100-p"></div>
+                                            <div id="" class="note-bar front pos-absolute" data-score="{{BookingGuestsComfortScore}}"></div>
+                                        </div>
+                                    </li>
+                                    <li class="scrore mb-15">
+                                        <p class="f-open-sans f-size-14 d-block w-100-p m-bottom-10">
+                                            <i class="las la-blender"></i> {{ResourcesTemplate.Facilities}}
+                                            <span class="float-right" id="">{{BookingGuestsFacilitiesScore}}</span>
+                                        </p>
+                                        <div class="note-bar-w w-100-p relative pos-relative">
+                                            <div class="note-bar back opacity-02 w-100-p"></div>
+                                            <div id="" class="note-bar front pos-absolute" data-score="{{BookingGuestsFacilitiesScore}}"></div>
+                                        </div>
+                                    </li>
+                                    <li class="scrore mb-15">
+                                        <p class="f-open-sans f-size-14 d-block w-100-p m-bottom-10">
+                                            <i class="las la-concierge-bell"></i> {{ResourcesTemplate.Staff}}
+                                            <span class="float-right" id="">{{BookingGuestsStaffScore}}</span>
+                                        </p>
+                                        <div class="note-bar-w w-100-p relative pos-relative">
+                                            <div class="note-bar back opacity-02 w-100-p"></div>
+                                            <div id="" class="note-bar front pos-absolute" data-score="{{BookingGuestsStaffScore}}"></div>
+                                        </div>
+                                    </li>
+                                    <li class="scrore mb-15">
+                                        <p class="f-open-sans f-size-14 d-block w-100-p m-bottom-10">
+                                            <i class="las la-money-bill-wave"></i> {{ResourcesTemplate.QualityPriceRatio}}
+                                            <span class="float-right" id="">{{BookingGuestsValueScore}}</span>
+                                        </p>
+                                        <div class="note-bar-w w-100-p relative pos-relative">
+                                            <div class="note-bar back opacity-02 w-100-p"></div>
+                                            <div id="" class="note-bar front pos-absolute" data-score="{{BookingGuestsValueScore}}"></div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        {{/HasBookingGuestsScoreActivated}}
+
+                        {{#HasFairGuestWidgetActivated}}
+                        <div class="fairguest">
+                            <rc-fairguest-widget-pro id="{{FairGuestID}}" lang="fr-FR" />
+                            <script type="module">
+(async () => (await import('https://www.fairguest.com/api/v2/fairguest/widgets/{{FairGuestID}}/js')).load())();
+                            </script>
+                        </div>
+                        {{/HasFairGuestWidgetActivated}}
+                    </div>
+                </div>
+
+                <div class="user-contain">
+                    <div class="user-infos">
+                        <h3>{{NameUser}}</h3>
+
+                        {{#FonctionUser}}
+                        <span class="fonction-user">{{FonctionUser}}</span>
+                        {{/FonctionUser}}
+
+                        <div class="btn-contain">
+                            <a class="btn" href="{{UrlContact}}">{{ResourcesTemplate.ContactOwner}}</a>
+                        </div>
+                    </div>
+
+                    {{#HasAvatar}}
+                    <div class="avatar-contain">
+                        <div class="avatar-img bg-img" style="background-image: url({{PhotoUserUrl}});" alt="{{NamePhoto}}-avatar"></div>
+                    </div>
+                    {{/HasAvatar}}
+                </div>
+
+            </div>
+        </section>
+        {{/HasReviewsBlocActivated}}
+
+        {{#HasInstagramActivated}}
+        <!-- SECTION INSTA -->
+        <section class="section section-insta">
+            <div class="content-section">
+
+                <div class="section-title">
+                    <h2>{{ResourcesTemplate.LiveFromInstagram}}</h2>
+                </div>
+
+                <div class="insta-blocs">
+                    {{#InstagramMediasList}}
+                    <a href="{{Permalink}}" target="_blank" class="IG-bloc bg-img" style="background-image: url({{ThumbnailUrl}})">
+                    </a>
+                    {{/InstagramMediasList}}
+                </div>
+
+                {{#Instagram}}
+                <div class="btn-contain">
+                    <a class="btn" href="{{Instagram}}" target="_blank">{{ResourcesTemplate.InstaFollowUs}}</a>
+                </div>
+                {{/Instagram}}
+            </div>
+        </section>
+        {{/HasInstagramActivated}}
+
+        {{#HasNewsletterActivated}}
+        <!-- SECTION NEWSLETTER -->
+        {{>Newsletter}}
+        {{/HasNewsletterActivated}}
+    </main>
+
+    {{>Footer}}
+    {{>CommonScripts}}
+    {{>Cookies}}
+
+</body>
+
+</html>

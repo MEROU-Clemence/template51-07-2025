@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="{{CurrentLang.IsoLang}}" culture="{{CurrentLang.CultureLang}}">
+<head>
+    <title>{{ResourcesTemplate.Offers_MenuTitle}} - {{CustomTitle}} - {{City}} - {{Country}}</title>
+    <meta name="description" content="{{CustomTitle}} - {{ResourcesTemplate.Offers_OurOffers}}">
+    {{>CommonMetaTags}}
+    <link rel="canonical" href="{{UrlOffers}}" />
+    <meta property="og:url" content="{{UrlOffers}}" />
+    <meta property="og:title" content="{{ResourcesTemplate.Offers_MenuTitle}}" />
+    <meta property="og:image" content="{{#Photos.0}}{{UrlMedias}}/crop-300x200/{{IdMedia}}/{{FileNamePhoto}}{{/Photos.0}}" />
+    <meta property="og:description" content="{{CustomTitle}} - {{ResourcesTemplate.Offers_OurOffers}}" />
+    {{>FaviconTags}}
+    {{>CommonStylesheets}}
+</head>
+<body>
+    {{{ScriptAnalytics}}}
+    {{{GoogleTagManagerBody}}}
+    {{>Header}}
+
+    <main>
+        <!-- SECTION BANNER -->
+        <section class="section-title-BG bg-img" style="background-image: url({{#Photos.0}}{{UrlMedias}}/crop-1600x600/{{IdMedia}}/{{FileNamePhoto}}{{/Photos.0}});" alt="{{NamePhoto}}-offers-bg">
+            <div class="opacity">
+
+                <div class="section-title-banner">
+                    <h1>{{ResourcesTemplate.Offers_MenuTitle}}</h1>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION PRESTAS/OFFRES -->
+        <section class="section section-prestas">
+            <div class="content-section">
+
+                <div class="section-title">
+                    <h2>{{ResourcesTemplate.Offers_All}}</h2>
+                </div>
+
+                <div class="prestas-big-contain">
+                    {{#Prestations}}
+                    <div class="presta-contain">
+                        <div class="infos-presta">
+                            <h3>{{TitrePresta}}</h3>
+
+                            {{#DescriptionPresta}}
+                            <div class="description-presta">{{{DescriptionPresta}}}</div>
+                            {{/DescriptionPresta}}
+
+                            <div class="price-and-btn-presta">
+                                {{#MinPricePresta}}
+                                <div class="saw-prices">
+                                    <span class="price-begin">{{ResourcesTemplate.PriceFrom}}</span>
+                                    <span class="presta-price">
+                                        <strong>{{MinPricePresta}}{{CurrencySymbol}}</strong>/{{ResourcesTemplate.Night}}
+                                    </span>
+                                </div>
+                                {{/MinPricePresta}}
+
+                                <a class="btn" href="{{UrlPrestaTemplate}}">{{ResourcesTemplate.discover}}</a>
+                            </div>
+                        </div>
+
+                        <div class="img-presta-contain">
+                            {{#PhotosPresta.0}}
+                            <img class="img-presta bg-img" src="{{UrlMedias}}/crop-400x250/{{IdMedia}}/{{FileNamePhoto}}" alt="{{NamePhoto}}-presta" />
+                            {{/PhotosPresta.0}}
+                            {{^PhotosPresta}}
+                            {{#Photos.1}}
+                            <img class="img-presta bg-img" src="{{UrlMedias}}/crop-400x250/{{IdMedia}}/{{FileNamePhoto}}" alt="{{NamePhoto}}-presta" />
+                            {{/Photos.1}}
+                            {{/PhotosPresta}}
+                        </div>
+                    </div>
+                    {{/Prestations}}
+                </div>
+
+            </div>
+        </section>
+
+        {{#HasNewsletterActivated}}
+        <!-- SECTION NEWSLETTER -->
+        {{>Newsletter}}
+        {{/HasNewsletterActivated}}
+    </main>
+
+    {{>Footer}}
+    {{>CommonScripts}}
+    
+</body>
+</html>

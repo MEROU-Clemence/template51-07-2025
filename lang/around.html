@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="{{CurrentLang.IsoLang}}" culture="{{CurrentLang.CultureLang}}">
+<head>
+    <title>{{ResourcesTemplate.Around}} - {{CustomTitle}} - {{City}} - {{Country}}</title>
+    <meta name="description" content="{{SubtitleAround}}">
+    {{>CommonMetaTags}}
+    <link rel="canonical" href="{{UrlAround}}" />
+    <meta property="og:url" content="{{UrlAround}}" />
+    <meta property="og:title" content="{{ResourcesTemplate.Around}}" />
+    <meta property="og:image" content="{{#Photos.0}}{{UrlMedias}}/crop-300x200/{{IdMedia}}/{{FileNamePhoto}}{{/Photos.0}}" />
+    <meta property="og:description" content="{{SubtitleAround}}" />
+    {{>FaviconTags}}
+    {{>CommonStylesheets}}
+</head>
+<body>
+    {{{ScriptAnalytics}}}
+    {{{GoogleTagManagerBody}}}
+    {{>Header}}
+
+    <main class="around-page">
+        <!-- SECTION BANNER -->
+        <section class="section-title-BG bg-img" style="background-image: url({{#Photos.3}}{{UrlMedias}}/crop-1600x600/{{IdMedia}}/{{FileNamePhoto}}{{/Photos.3}}{{^Photos.3}}https://static.elloha.com/webgen/img/around.jpg{{/Photos.3}}); " alt="{{NamePhoto}}-around-bg">
+            <div class="opacity">
+
+                <div class="section-title-banner">
+                    <h1>{{ResourcesTemplate.pageMenuTitle_around}}</h1>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION AROUND -->
+        <section class="section">
+            <div class="content-section">
+
+                <div class="section-title">
+                    <h2 class="content-section">{{ResourcesTemplate.DiscoverSurroundingArea}}</h2>
+                </div>
+
+                <div class="around-items-w giftcards-big-contain">
+                    {{#OisAssocied}}
+                    <div class="grid-item around-contain news-contain options-contain" data-id-type="{{IdTypeOiAssocied}}" data-type-label="{{TypeOiAssocied}}" data-lat="{{XOiAssocied}}" data-lng="{{YOiAssocied}}">
+                        <div class="ancre-and-img-around">
+                            <span class="around-item-type">{{TypeOiAssocied}}</span>
+
+                            {{#PhotoOiAssocied}}
+                            <img class="bg-img" src="{{UrlMedias}}/crop-250x250/{{IdMedia}}/{{FileNamePhoto}}" alt="{{NamePhoto}}-photo-around" />
+                            {{/PhotoOiAssocied}}
+                            {{^PhotoOiAssocied}}
+                            <img class="bg-img" src="https://static.elloha.com/webgen/img/around.jpg" alt="{{NamePhoto}}-photo-around" />
+                            {{/PhotoOiAssocied}}
+                        </div>
+
+                        <div class="infos-news">
+                            <h3 data-name>{{TitleOiAssocied}}</h3>
+
+                            <div class="date-and-descrip-news">
+                                {{#DistanceOiAssocied}}
+                                <div class="around-distance">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                        <path d="M19.7562 18.577L14.7967 13.6175C15.9745 12.1787 16.6826 10.3411 16.6826 8.34181C16.6818 3.7426 12.9401 0 8.34089 0C3.74172 0 0 3.7426 0 8.34098C0 12.9394 3.74172 16.682 8.34089 16.682C10.341 16.682 12.1785 15.9738 13.6165 14.7961L18.576 19.7556C18.7386 19.9183 18.9522 20 19.1657 20C19.3792 20 19.5928 19.9183 19.7554 19.7556C20.0815 19.4295 20.0815 18.9023 19.7554 18.5762L19.7562 18.577ZM1.66818 8.34098C1.66818 4.66177 4.66173 1.6682 8.34089 1.6682C12.0201 1.6682 15.0136 4.66177 15.0136 8.34098C15.0136 12.0202 12.0201 15.0138 8.34089 15.0138C4.66173 15.0138 1.66818 12.021 1.66818 8.34098ZM8.32338 3.31888C7.20903 3.31888 6.16142 3.75344 5.37487 4.54083C4.58749 5.32738 4.15293 6.37501 4.15293 7.48937C4.15293 8.60372 4.58749 9.65135 5.38154 10.4446L6.89291 11.9234C7.28827 12.3096 7.80541 12.5015 8.32338 12.5015C8.84135 12.5015 9.35848 12.3096 9.75301 11.9234L11.2719 10.4379C12.0593 9.65135 12.4938 8.60372 12.4938 7.48937C12.4938 6.37501 12.0593 5.32822 11.2719 4.54083C10.4845 3.75344 9.43689 3.31888 8.32338 3.31888ZM10.0992 9.25181L8.58695 10.7307C8.44182 10.8725 8.20494 10.8725 8.0598 10.7307L6.55427 9.25765C6.08218 8.78555 5.82111 8.15748 5.82111 7.48853C5.82111 6.81958 6.08135 6.19151 6.55511 5.71941C7.02637 5.24648 7.65444 4.98624 8.32338 4.98624C8.99232 4.98624 9.62039 5.24648 10.0925 5.71941C10.5646 6.19151 10.8256 6.81958 10.8256 7.48853C10.8256 8.15748 10.5646 8.78639 10.0992 9.25181ZM9.15747 7.48353C9.15747 7.94395 8.78379 8.31763 8.32338 8.31763C7.86296 8.31763 7.48929 7.94395 7.48929 7.48353C7.48929 7.0231 7.86296 6.64943 8.32338 6.64943C8.78379 6.64943 9.15747 7.0231 9.15747 7.48353Z" fill="var(--color-text)" />
+                                    </svg>
+                                    <span>
+                                        {{ResourcesTemplate.At}} {{DistanceOiAssocied}} {{ResourcesTemplate.Km}} {{ResourcesTemplate.FromOurPlace}}
+                                    </span>
+                                </div>
+                                {{/DistanceOiAssocied}}
+
+                                <div class="around-item-content-w">
+                                    <div class="text-description">{{DescriptionOiAssocied}}</div>
+
+                                    <div class="more-less-btn link-to-see see-all"><strong>{{ResourcesTemplate.ReadMore2}}</strong></div>
+                                    <div class="more-less-btn link-to-see see-menos hidden"><strong>{{ResourcesTemplate.ReadLess2}}</strong></div>
+                                </div>
+                            </div>
+
+                            <div class="btn-around {{^TextOpinion}}no-opinion{{/TextOpinion}}">
+                                <div class="comment-item-w">
+                                    <div class="icon-to-see icon-all btn">{{ResourcesTemplate.OurRecommendation}}</div>
+                                    <div class="icon-to-see icon-menos hidden btn">{{ResourcesTemplate.OurRecommendation}}</div>
+                                    <div class="text-opinion d-none">{{TextOpinion}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{/OisAssocied}}
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION MAP -->
+        <section class="section section-map">
+            <div class="content-section">
+
+                <div class="address-contain">
+                    <div class="title-and-address">
+                        <h2>{{ResourcesTemplate.WhereAreWe}}</h2>
+
+                        <div class="address-line">
+                            <i class="las la-map-marker"></i>
+                            <span>
+                                {{AddressLine}},
+                                {{#ComplementAdresse}}
+                                {{ComplementAdresse}}, 
+                                {{/ComplementAdresse}}
+                                {{#DistributionSpeciale}}
+                                {{DistributionSpeciale}}, 
+                                {{/DistributionSpeciale}}
+                                {{PostalCode}} {{City}}
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="btn-contain">
+                        <div class="btn external-map" data-action="external-map">
+                            {{ResourcesTemplate.Itinerary}}
+                        </div>
+                    </div>
+                </div>
+
+                <div id="applemapkit" class="fullwidth-mapkit" data-lat="{{X}}" data-lng="{{Y}}" data-string="{{CustomTitle}}, {{AddressLine}}, {{PostalCode}}, {{City}}, {{Country}}.">
+                    <div id="mapApple"></div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    {{>Footer}}
+    {{>CommonScripts}}
+    
+</body>
+</html>

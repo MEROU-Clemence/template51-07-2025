@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="{{CurrentLang.IsoLang}}" culture="{{CurrentLang.CultureLang}}">
+<head>
+    <title>{{ResourcesTemplate.NewsPageTitle}} - {{CustomTitle}} - {{City}} - {{Country}}</title>
+    <meta name="description" content="{{MetaDescriptionNews}}">
+    {{>CommonMetaTags}}
+    <link rel="canonical" href="{{UrlNews}}" />
+    <meta property="og:url" content="{{UrlNews}}" />
+    <meta property="og:title" content="{{ResourcesTemplate.NewsPageTitle}}" />
+    <meta property="og:image" content="{{#Photos.0}}{{UrlMedias}}/crop-300x200/{{IdMedia}}/{{FileNamePhoto}}{{/Photos.0}}" />
+    <meta property="og:description" content="{{MetaDescriptionNews}}" />
+    {{>FaviconTags}}
+    {{>CommonStylesheets}}
+</head>
+<body>
+    {{{ScriptAnalytics}}}
+    {{{GoogleTagManagerBody}}}
+    {{>Header}}
+
+    <main class="news-page">
+        <!-- SECTION BANNER -->
+        <section class="section-title-BG bg-img" style="background-image: url({{#Photos.4}}{{UrlMedias}}/crop-1600x600/{{IdMedia}}/{{FileNamePhoto}}{{/Photos.4}}{{^Photos.4}}{{#Photos.0}}{{UrlMedias}}/crop-1600x600/{{IdMedia}}/{{FileNamePhoto}}{{/Photos.0}}{{/Photos.4}}); " alt="{{NamePhoto}}-news-bg">
+            <div class="opacity">
+
+                <div class="section-title-banner">
+                    <h1>{{ResourcesTemplate.pageMenuTitle_news}}</h1>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION AUTRES NEWS -->
+        <section class="section section-other-pages">
+            <div class="content-section">
+
+                <div class="owl-carousel owl-theme slider-other-pages">
+                    {{#NewsList}}
+                    <a class="newslist-contain" href="#{{IdNews}}">
+                        <img src="{{#ListPhotoNews.0}}{{UrlMedias}}/crop-250x250/{{IdMedia}}/{{FileNamePhoto}}{{/ListPhotoNews.0}}{{^ListPhotoNews.0}}https://static.elloha.com/webgen/img/news.jpg{{/ListPhotoNews.0}}" alt="{{NamePhoto}}-news-photo">
+
+                        <span>{{TitleNews}}</span>
+                    </a>
+                    {{/NewsList}}
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION NEWS COMPLETE -->
+        {{#NewsList}}
+        <section id="{{IdNews}}" class="news-page-news" data-pagination-item>
+
+             <!-- SECTION NEWS -->
+            <div class="section">
+                <div class="content-section">
+
+                    <div class="title-and-descrip-page">
+                        <h2>{{TitleNews}}</h2>
+
+                        <div class="description-contain">
+                            <div class="description description-page-news">
+                                <div class="date-news-in-news">
+                                    <span>{{ResourcesTemplate.PublishedOn}} {{DateNewsString}}</span>
+                                </div>
+
+                                {{{TextNews}}}
+                            </div>
+
+                            <div class="more-less-btn-contain seeMore3">
+                                <a href="#" class="more-less-btn"><strong>{{ResourcesTemplate.ShowMore}}</strong></a>
+                            </div>
+                            <div class="more-less-btn-contain seeLess3">
+                                <a href="#" class="more-less-btn"><strong>{{ResourcesTemplate.ShowLess}}</strong></a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- SECTION IMG NEWS -->
+            <div class="section">
+                <div class="content-section">
+
+                    {{#ListPhotoNews.0}}
+                    <div class="Carousel-slider-class">
+                        <div class="Carousel-slider">
+                            {{#ListPhotoNews}}
+                            <div class="slider-item">
+                                <img src="{{UrlMedias}}/crop-500x450/{{IdMedia}}/{{FileNamePhoto}}" alt="{{NamePhoto}}-photo-news" />
+                            </div>
+                            {{/ListPhotoNews}}
+
+                            {{#UrlYoutube}}
+                            <div class="slider-item">
+                                <div class="option-youtube">
+                                    <iframe src="{{UrlYoutube}}" frameborder="0" allowfullscreen></iframe>
+                                </div>
+                            </div>
+                            {{/UrlYoutube}}
+                        </div>
+
+                        <div class="btn-slider-contain">
+                            <div class="slider-control prev prev-slide-class">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <path d="M0.879999 9.91002L4.75 6.00002C4.84296 5.90629 4.95357 5.8319 5.07542 5.78113C5.19728 5.73036 5.32799 5.70422 5.46 5.70422C5.59201 5.70422 5.72272 5.73036 5.84458 5.78113C5.96643 5.8319 6.07704 5.90629 6.17 6.00002C6.35625 6.18738 6.46079 6.44084 6.46079 6.70502C6.46079 6.96921 6.35625 7.22266 6.17 7.41002L2.61 11H23C23.2652 11 23.5196 11.1054 23.7071 11.2929C23.8946 11.4805 24 11.7348 24 12C24 12.2652 23.8946 12.5196 23.7071 12.7071C23.5196 12.8947 23.2652 13 23 13H2.55L6.17 16.61C6.26373 16.703 6.33812 16.8136 6.38889 16.9354C6.43966 17.0573 6.4658 17.188 6.4658 17.32C6.4658 17.452 6.43966 17.5827 6.38889 17.7046C6.33812 17.8265 6.26373 17.9371 6.17 18.03C6.07704 18.1238 5.96643 18.1981 5.84458 18.2489C5.72272 18.2997 5.59201 18.3258 5.46 18.3258C5.32799 18.3258 5.19728 18.2997 5.07542 18.2489C4.95357 18.1981 4.84296 18.1238 4.75 18.03L0.879999 14.15C0.318197 13.5875 0.00263977 12.825 0.00263977 12.03C0.00263977 11.235 0.318197 10.4725 0.879999 9.91002Z" fill="var(--color-bg-2)" />
+                                </svg>
+                            </div>
+                            <div class="slider-control next next-slide-class">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <path d="M23.12 9.91002L19.25 6.00002C19.157 5.90629 19.0464 5.8319 18.9246 5.78113C18.8027 5.73036 18.672 5.70422 18.54 5.70422C18.408 5.70422 18.2773 5.73036 18.1554 5.78113C18.0336 5.8319 17.923 5.90629 17.83 6.00002C17.6437 6.18738 17.5392 6.44084 17.5392 6.70502C17.5392 6.96921 17.6437 7.22266 17.83 7.41002L21.39 11H1C0.734784 11 0.48043 11.1054 0.292893 11.2929C0.105357 11.4805 0 11.7348 0 12C0 12.2652 0.105357 12.5196 0.292893 12.7071C0.48043 12.8947 0.734784 13 1 13H21.45L17.83 16.61C17.7363 16.703 17.6619 16.8136 17.6111 16.9354C17.5603 17.0573 17.5342 17.188 17.5342 17.32C17.5342 17.452 17.5603 17.5827 17.6111 17.7046C17.6619 17.8265 17.7363 17.9371 17.83 18.03C17.923 18.1238 18.0336 18.1981 18.1554 18.2489C18.2773 18.2997 18.408 18.3258 18.54 18.3258C18.672 18.3258 18.8027 18.2997 18.9246 18.2489C19.0464 18.1981 19.157 18.1238 19.25 18.03L23.12 14.15C23.6818 13.5875 23.9974 12.825 23.9974 12.03C23.9974 11.235 23.6818 10.4725 23.12 9.91002Z" fill="var(--color-bg-2)" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{^ListPhotoNews.1}}
+                    {{^UrlYoutube}}
+                    {{#ListPhotoNews}}
+                    <div class="photo-page">
+                        <img class="photo-solo" src="{{UrlMedias}}/crop-1300x800/{{IdMedia}}/{{FileNamePhoto}}" alt="{{NamePhoto}}-photo-news">
+                    </div>
+                    {{/ListPhotoNews}}
+                    {{/UrlYoutube}}
+                    {{/ListPhotoNews.1}}
+                    {{/ListPhotoNews.0}}
+
+                    {{^ListPhotoNews.0}}
+                    <div class="photo-page">
+                        <img class="photo-solo" src="https://static.elloha.com/webgen/img/news.jpg" alt="{{NamePhoto}}-photo-news">
+                    </div>
+                    {{/ListPhotoNews.0}}
+
+                </div>
+            </div>
+        </section>
+        {{/NewsList}}
+
+        {{#HasNewsletterActivated}}
+        <!-- SECTION NEWSLETTER -->
+        {{>Newsletter}}
+        {{/HasNewsletterActivated}}
+    </main>
+
+    {{>Footer}}
+    {{>CommonScripts}}
+    
+</body>
+</html>
